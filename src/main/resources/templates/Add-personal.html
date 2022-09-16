@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1 style="text-align: center;color: cornflowerblue" > Добавить студента</h1>
+<form th:action = "${'/Add/personal'}" method="post" th:object="${personal}" >
+<!--    <label> Фамилия студента</label>-->
+<!--    <input type="text" th:field="*{surname}" style="text-align: center;margin-bottom: 20px"    name="surname" size="25" maxlength="20" >-->
+<!--    <div style="color: black" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></div><br>-->
+
+<!--    <label> Имя студента</label>-->
+<!--    <input type="text" th:field="*{name}" style="text-align: center;margin-bottom: 20px"    name="name" size="25" maxlength="20" >-->
+<!--    <div style="color: black" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div><br>-->
+
+<!--    <label> Отчество студента</label>-->
+<!--    <input type="text" th:field="*{middlename}" style="text-align: center;margin-bottom: 20px"   name="middlename" size="25" maxlength="20" >-->
+<!--    <div style="color: black" th:if="${#fields.hasErrors('middlename')}" th:errors="*{middlename}"></div><br>-->
+
+<!--    <label> Дата рождения студента</label>-->
+<!--    <input type="date" th:field="*{birthday}" style="text-align: center;margin-bottom: 20px"   name="birthday" >-->
+<!--    <div style="color: black" th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}"></div><br>-->
+<!--    <label> Номер курса</label>-->
+<!--    <input type="text" th:field="*{street}" style="text-align: center;margin-bottom: 20px"    maxlength="1" size="25" name="groupp">-->
+<!--    <div style="color: red" th:if="${#fields.hasErrors('street')}" th:errors="*{street}"></div><br>-->
+<!--    <label> Номер курса</label>-->
+<!--    <input type="text" th:field="*{seriapasporta}" style="text-align: center;margin-bottom: 20px"    maxlength="1" size="25" name="seriapasporta">-->
+<!--    <div style="color: red" th:if="${#fields.hasErrors('seriapasporta')}" th:errors="*{seriapasporta}"></div><br>-->
+<!--    <label> Номер курса</label>-->
+<!--    <input type="text" th:field="*{nomerpasporta}" style="text-align: center;margin-bottom: 20px"    maxlength="1" size="25" name="nomerpasporta">-->
+<!--    <div style="color: red" th:if="${#fields.hasErrors('nomerpasporta')}" th:errors="*{nomerpasporta}"></div><br>-->
+<!--    <label> Номер курса</label>-->
+<!--    <input type="text" th:field="*{snils}" style="text-align: center;margin-bottom: 20px"    maxlength="1" size="25" name="snils">-->
+<!--    <div style="color: red" th:if="${#fields.hasErrors('snils')}" th:errors="*{snils}"></div><br>-->
+<!--    <label> Номер курса</label>-->
+<!--    <input type="text" th:field="*{home}" style="text-align: center;margin-bottom: 20px"    maxlength="1" size="25" name="home">-->
+<!--    <div style="color: red" th:if="${#fields.hasErrors('home')}" th:errors="*{home}"></div><br>-->
+<!--    <label> Номер курса</label>-->
+<!--    <input type="text" th:field="*{flat}" style="text-align: center;margin-bottom: 20px"    maxlength="1" size="25" name="flat">-->
+<!--    <div style="color: red" th:if="${#fields.hasErrors('flat')}" th:errors="*{flat}"></div><br>-->
+<!--    <label> Номер курса</label>-->
+<!--    <input type="text" th:field="*{salary}" style="text-align: center;margin-bottom: 20px"    maxlength="1" size="25" name="salary">-->
+<!--    <div style="color: red" th:if="${#fields.hasErrors('salary')}" th:errors="*{salary}"></div><br>-->
+<!--    <label> Номер курса</label>-->
+<!--    <input type="text" th:field="*{thebuildingofthehouse}" style="text-align: center;margin-bottom: 20px"    maxlength="1" size="25" name="thebuildingofthehouse">-->
+<!--    <div style="color: red" th:if="${#fields.hasErrors('thebuildingofthehouse')}" th:errors="*{thebuildingofthehouse}"></div><br>-->
+<!--    <div th:each="element : ${user}">-->
+<!--        <option th:text="${element.street}"></option>-->
+<!--    </div>-->
+<!--    <div th:each="element : ${laborbook}">-->
+<!--        <option th:text="${element.street}"></option>-->
+<!--    </div>-->
+<!--    <div th:each="element : ${address}">-->
+<!--        <option th:text="${element.mesto}"></option>-->
+<!--    </div>-->
+<!--    <button style="color: blueviolet;height: 20px;width: 150px" type="submit"> Добавить студента</button>-->
+<!--</form>-->
+</body>
+</html>
