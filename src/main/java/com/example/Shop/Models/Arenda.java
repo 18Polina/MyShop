@@ -7,17 +7,17 @@ public class Arenda {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    private String datenachala, street,nomerdogovora;
+    private String datenachala, nomerdogovora,street;
+
+    public Arenda(String datenachala, String nomerdogovora, String street, Mesto mesto) {
+        this.datenachala = datenachala;
+        this.nomerdogovora = nomerdogovora;
+        this.street = street;
+        this.mesto = mesto;
+    }
 
     @ManyToOne(optional = true, cascade = CascadeType.ALL)
     private Mesto mesto;
-
-    public Arenda(String datenachala, String street, String nomerdogovora, Mesto mesto) {
-        this.datenachala = datenachala;
-        this.street = street;
-        this.nomerdogovora = nomerdogovora;
-        this.mesto = mesto;
-    }
 
 
     public Arenda() {

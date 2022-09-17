@@ -30,14 +30,19 @@ public class ArendController {
         model.addAttribute("city",mesto);
         return "MainArenda";
     }
+    @GetMapping("/Add/arenda")
+    public String GetArenda()
+    {
+        return  "Add-arenda";
+    }
 
     @PostMapping("/Add/arenda")
-    public String blogPostAdd( String datenachala, String street, String nomerdogovora,
-                               String city,
+    public String blogPostAdd( @RequestParam String datenachala,@RequestParam String nomerdogovora, @RequestParam String street,
+                               @RequestParam String city,
                               Model model)
     {
         Mesto mesto = mestoRepository.findByCity(city);
-        Arenda arenda = new Arenda(datenachala, street,nomerdogovora,mesto);
+        Arenda arenda = new Arenda(datenachala, nomerdogovora,street,mesto);
         arendaRepository.save(arenda);
         return "redirect:/MainArenda";
     }
