@@ -1,34 +1,46 @@
 package com.example.Shop.Models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+import java.util.Collection;
 import java.util.List;
 
 @Entity
 public class Tovar {
+    public Tovar(String nametovar, Producttype producttype, Proizvod proizvod) {
+        this.nametovar = nametovar;
+        this.producttype = producttype;
+        this.proizvod = proizvod;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-
+    @NotEmpty(message = "Поле не может быть пустым")
+    @Size(min = 2, max = 50,message = "Размер данного поля должен быть в диапазоне от 2 до 50")
+    @Pattern(regexp = "^([а-яА-Яё]+|[a-zA-Z]+)$",
+            message = "Значение должно содержать буквы русского или латинского алфавита")
     private String nametovar;
-
-    public List<Chek> getCheks() {
-        return cheks;
-    }
-
-    public void setCheks(List<Chek> cheks) {
-        this.cheks = cheks;
-    }
-
-    @ManyToMany
-    @JoinTable (name="tovar_chek",
-            joinColumns=@JoinColumn (name="tovar_id"),
-            inverseJoinColumns=@JoinColumn(name="chek_id"))
-    private List<Chek> cheks;
-    @ManyToOne(optional = true, cascade = CascadeType.ALL)
+    @ManyToOne(optional = true, cascade = CascadeType.DETACH)
     private Producttype producttype;
 
+    public Tovar() {
+    }
+    public Collection<Tovarcheck> getTenants() {
+        return tenants;
+    }
+
+    public void setTenants(Collection<Tovarcheck> tenants) {
+        this.tenants = tenants;
+    }
+
+    @OneToMany(mappedBy = "tovar", fetch = FetchType.EAGER)
+    private Collection<Tovarcheck> tenants;
+
     public long getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(long id) {

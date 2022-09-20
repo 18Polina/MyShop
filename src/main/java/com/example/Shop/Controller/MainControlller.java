@@ -11,16 +11,16 @@ import javax.validation.Valid;
 
 @Controller
 public class MainControlller {
-    @GetMapping("/")
+    @GetMapping("/logout")
     public String Glavn(Model model)
     {
         return "Main";
     }
-    @PostMapping("/MainArenda")
+    @PostMapping("/logout")
     public String Stud(Model model)
     {
 
-        return "MainArenda";
+        return "logout";
     }
 
 }

@@ -4,12 +4,40 @@ import java.util.Collection;
 import java.util.Set;
 
 @Entity
-public class User  {
+public class User   {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String username;
     private String password;
+
+
+    public User() {
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
+    @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
+    @Enumerated(EnumType.STRING)
+    private Set<Role> roles;
+
+    public User(String username, String password, Set<Role> roles, Personal personal, boolean active) {
+        this.username = username;
+        this.password = password;
+        this.roles = roles;
+        this.personal = personal;
+        this.active = active;
+    }
+
+    @OneToOne(mappedBy = "user", fetch = FetchType.EAGER)
+    private Personal personal;
 
     public Long getId() {
         return id;
@@ -44,17 +72,4 @@ public class User  {
     }
 
     private boolean active;
-
-    public Collection<Personal> getTenants() {
-        return tenants;
-    }
-
-    public void setTenants(Collection<Personal> tenants) {
-        this.tenants = tenants;
-    }
-
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
-    private Collection<Personal> tenants;
-
-
 }

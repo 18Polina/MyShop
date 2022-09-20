@@ -1,20 +1,63 @@
 package com.example.Shop.Models;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.util.Collection;
+import java.util.Set;
 
 @Entity
-public class Personal {
+public class Personal  {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
-    private String surname,name,birthday,street;
-    private String middlename;
-    private int seriapasporta,nomerpasporta,snils,home,flat,salary;
-    private int thebuildingofthehouse;
+    private Long id;
+    @NotEmpty(message = "Поле не может быть пустым")
+    @Size(min = 2, max = 30,message = "Размер данного поля должен быть в диапазоне от 2 до 30")
+    @Pattern(regexp = "^([а-яА-Яё]+)$",
+            message = "Значение должно содержать буквы русского или латинского алфавита")
+    private String surname,name,middlename,street;
+    @NotEmpty(message = "Поле не может быть пустым")
+    private String birthday;
 
-    @ManyToOne(optional = true, cascade = CascadeType.ALL)
+    @NotEmpty(message = "Поле не может быть пустым")
+    @Pattern(regexp = "^([0-9]+)$",
+            message = "Значение должно содержать цифры")
+    private String snils;
+
+    @NotEmpty(message = "Поле не может быть пустым")
+    @Pattern(regexp = "^([0-9]+)$",
+            message = "Значение должно содержать цифры")
+    private String home,flat,salary;
+    @NotEmpty(message = "Поле не может быть пустым")
+    @Pattern(regexp = "^([0-9]+)$",
+            message = "Значение должно содержать цифры")
+    private String seriapasporta;
+    @NotEmpty(message = "Поле не может быть пустым")
+    @Pattern(regexp = "^([0-9]+)$",
+            message = "Значение должно содержать цифры")
+    private String nomerpasporta;
+
+
+    @NotEmpty(message = "Поле не может быть пустым")
+    @Pattern(regexp = "^([0-9]+)$",
+            message = "Значение должно содержать цифры")
+    private String thebuildingofthehouse;
+    private boolean active;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @JoinColumn(name="user_id")
     private User user;
+
 
     public Laborbook getLaborbook() {
         return laborbook;
@@ -26,121 +69,44 @@ public class Personal {
 
     @ManyToOne(optional = true, cascade = CascadeType.ALL)
     private Laborbook laborbook;
+
+    public Mesto getMesto() {
+        return mesto;
+    }
+
+    public void setMesto(Mesto mesto) {
+        this.mesto = mesto;
+    }
+
     @ManyToOne(optional = true, cascade = CascadeType.ALL)
     private Mesto mesto;
+    public Long getId() {return id;}
+    public void setId(Long id) {this.id = id;}
+    public String getSurname() {return surname;}
+    public void setSurname(String surname) {this.surname = surname;}
+    public String getName() {return name;}
+    public void setName(String name) {this.name = name;}
+    public String getBirthday() {return birthday;}
+    public void setBirthday(String birthday) {this.birthday = birthday;}
+    public String getStreet() {return street;}
+    public void setStreet(String street) {this.street = street;}
+    public String getMiddlename() {return middlename;}
+    public void setMiddlename(String middlename) {this.middlename = middlename;}
+    public String getSeriapasporta() {return seriapasporta;}
+    public void setSeriapasporta(String seriapasporta) {this.seriapasporta = seriapasporta;}
+    public String getNomerpasporta() {return nomerpasporta;}
+    public void setNomerpasporta(String nomerpasporta) {this.nomerpasporta = nomerpasporta;}
+    public String getSnils() {return snils;}
+    public void setSnils(String snils) {this.snils = snils;}
+    public String getHome() {return home;}
+    public void setHome(String home) {this.home = home;}
+    public String getFlat() {return flat;}
+    public void setFlat(String flat) {this.flat = flat;}
+    public String getSalary() {return salary;}
+    public void setSalary(String salary) {this.salary = salary;}
+    public String getThebuildingofthehouse() {return thebuildingofthehouse;}
+    public void setThebuildingofthehouse(String thebuildingofthehouse) {this.thebuildingofthehouse = thebuildingofthehouse;}
+    public boolean isActive() {return active;}
+    public void setActive(boolean active) {this.active = active;}
 
-
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(String birthday) {
-        this.birthday = birthday;
-    }
-
-    public String getStreet() {
-        return street;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public String getMiddlename() {
-        return middlename;
-    }
-
-    public void setMiddlename(String middlename) {
-        this.middlename = middlename;
-    }
-
-    public int getSeriapasporta() {
-        return seriapasporta;
-    }
-
-    public void setSeriapasporta(int seriapasporta) {
-        this.seriapasporta = seriapasporta;
-    }
-
-    public int getNomerpasporta() {
-        return nomerpasporta;
-    }
-
-    public void setNomerpasporta(int nomerpasporta) {
-        this.nomerpasporta = nomerpasporta;
-    }
-
-    public int getSnils() {
-        return snils;
-    }
-
-    public void setSnils(int snils) {
-        this.snils = snils;
-    }
-
-    public int getHome() {
-        return home;
-    }
-
-    public void setHome(int home) {
-        this.home = home;
-    }
-
-    public int getFlat() {
-        return flat;
-    }
-
-    public void setFlat(int flat) {
-        this.flat = flat;
-    }
-
-    public int getSalary() {
-        return salary;
-    }
-
-    public void setSalary(int salary) {
-        this.salary = salary;
-    }
-
-    public int getThebuildingofthehouse() {
-        return thebuildingofthehouse;
-    }
-
-    public void setThebuildingofthehouse(int thebuildingofthehouse) {
-        this.thebuildingofthehouse = thebuildingofthehouse;
-    }
-
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 }

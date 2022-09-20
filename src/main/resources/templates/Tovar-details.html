@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Магазин одежды</title>
+</head>
+<body style="background: #C8EAFA">
+<div th:each="el : ${tovar}" style="text-align: center"  >
+  <h1 style="text-align: center;color: #536872">Личная информация об аренде магазина: </h1>
+
+  <label style="text-align: center"> Название товара:</label>
+  <p style="text-align: center" th:text="${el.getNametovar()}"></p>
+  <label style="text-align: center"> Тип товара:</label>
+  <p style="text-align: center" th:text="${el.getProducttype()?.getTiptovara()}"></p>
+  <label style="text-align: center"> Производитель:</label>
+  <p style="text-align: center" th:text="${el.getProizvod()?.getCountry()}"></p>
+
+
+  <form th:action="'/Tovar/' + ${el.id} + '/edit'" method="get">
+    <button style="color: #415159; size: 50px; border:#000000; margin-bottom: 20px;
+     background:#91B6C7;height: 30px;width: 300px" type="submit" class="btn btn-del">Редактировать</button><br>
+  </form>
+
+  <form th:action="'/Tovar/' + ${el.id} + '/remove'" method="post">
+    <button style="color: #415159; size: 50px; border:#000000; margin-bottom: 20px;
+     background:#91B6C7;height: 30px;width: 300px" type="submit" class="btn btn-del">Удалить</button><br>
+  </form>
+
+  <form th:action="'/MainTovar'" method="get">
+    <button style="color: #415159; size: 50px; border:#000000;
+     background:#91B6C7;height: 30px;width: 300px" type="submit" class="btn btn-del">Назад</button>
+  </form>
+</div>
+</body>
+</html>

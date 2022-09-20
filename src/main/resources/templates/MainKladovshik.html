@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Магазин одежды</title>
+</head>
+<body style="background: #C8EAFA">
+<div th:insert="blocks/header"></div>
+<h1 style="color: #536872;text-align: center">Кладовщик</h1>
+<form th:action = "${'/MainTovar'}" method="get"  >
+    <button style="color: #415159; size: 50px; border:#000000;  background:#91B6C7;height: 30px;width: 300px;alignment: center;position: center;left: -80%;transform: translate(80%,0)" type="submit"> Товар</button>
+</form>
+</body>
+</html>
